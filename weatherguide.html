@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Expand and Collapse FAQ Accordion</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/2a05f92155.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+<script>
+const baseURL = "https://ci-swapi.herokuapp.com/api/";
+function getData(url, cb) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            cb(JSON.parse(this.responseText));
+        }
+    };
+
+    xhr.open("GET", url);
+    xhr.send();
+}
+
+function getTableHeaders(obj) {
+    var tableHeaders = [];
+
+    Object.keys(obj).forEach(function(key) {
+        tableHeaders.push(`<td>${key}</td>`);
+    });
+
+    return `<tr>${tableHeaders}</tr>`;
+}
+
+function generatePaginationButtons(next, prev) {
+    if (next && prev) {
+        return `<button onclick="writeToDocument('${prev}')">Previous</button>
+                <button onclick="writeToDocument('${next}')">Next</button>`;
+    } else if (next && !prev) {
+        return `<button onclick="writeToDocument('${next}')">Next</button>`;
+    } else if (!next && prev) {
+        return `<button onclick="writeToDocument('${prev}')">Previous</button>`;
+    }
+}
+
+function writeToDocument(url) {
+    var tableRows = [];
+    var el = document.getElementById("data");
+
+    getData(url, function(data) {
+        var pagination = "";
+
+        if (data.next || data.previous) {
+            pagination = generatePaginationButtons(data.next, data.previous);
+        }
+        data = data.results;
+        var tableHeaders = getTableHeaders(data[0]);
+
+        data.forEach(function(item) {
+            var dataRow = [];
+
+            Object.keys(item).forEach(function(key) {
+                var rowData = item[key].toString();
+                var truncatedData = rowData.substring(0, 15);
+                dataRow.push(`<td>${truncatedData}</td>`);
+            });
+            tableRows.push(`<tr>${dataRow}</tr>`);
+        });
+
+        el.innerHTML = `<table>${tableHeaders}${tableRows}</table>${pagination}`;
+    });
+}
+
+
+</script>
+
+</head>
+<body>
+<header>
+        <nav class="navbar navbar-expand-md navbar-light" id="navlist">
+            <div class="container">
+            <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a href="index.html" class="nav-link" data-toggle="tooltip" title="Home Page!" onmouseover="MouseOver(this);" onmouseout="MouseOut(this);"><i class="fas fa-house-user"></i></a></li>
+                <li class="nav-item dropdown">
+                    <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#" >Trending Tours<b class="caret"></b></a>
+                    <ul class="dropdown-menu">          
+                        <div class="honymoon_holiday_submenu">
+                        <div class="mega_menu_header_titles mega_menu_header_titles_no_top"></div>
+                                        <li><a href="ooty.html" title="Goa Tour Packages">Hill Station -Ooty </a></li> 
+                                        <li><a href="delhi.html" title="Gujarat Tour Packages">Historic - Delhi </a></li>
+                                        <li><a href="kanyakumari.html" title="Himachal Tour Packages">Beach - Kanyakumari </a></li> 
+                                
+                                        <li><a href="ladakh.html" title="Ladakh Tour Packages">Adventure -  Ladakh</a></li>
+                        </div>  </ul>
+                </li>
+                 <li class="nav-item"><a href="adventure.html" class="nav-link">Adventure tours</a></li>
+                <li class="nav-item"><a href="faqs.html" class="nav-link" data-toggle="tooltip" title="FAQs"><i class="fas fa-question-circle"></i></a></li>
+                <li class="nav-item"><a href="contactus.html" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="sign.html" class="nav-link">Sign-In</a></li>
+                <li class="nav-item"><a href="weatherguide.html" class="nav-link">Wheather Guide</a></li>
+            </ul>
+            </div>
+            </div>
+        </nav>
+</header>
+<main class="main" id="beach-image">
+  <div class="full-width-container where-hot-when">
+      <h1 class="container homepage-intro-title">Where's hot When?</h1>
+    <br>
+    <h2 class="container homepage-intro-subtitle">The Complete Guide To Holiday Weather</h2>
+    <br>
+    <div class="container when-col-list-container">
+      <div class="when-col-list-content">
+             <p>There’s nothing more depressing than watching summer slip away from your grasp. <br> But summer doesn’t have to end and here are a selection&nbsp;of the hottest destinations&nbsp; <br>to travel to in order to get your fix of winter sun.</p>
+      </div>
+</div>
+  </div>
+</main>
+<div>
+ <button onclick="writeToDocument('https://ci-swapi.herokuapp.com/api/people')">People</button>
+    <button onclick="writeToDocument('https://ci-swapi.herokuapp.com/api/planets')">Planets</button>
+    <button onclick="writeToDocument('https://ci-swapi.herokuapp.com/api/species')">Species</button>
+    <button onclick="writeToDocument('https://ci-swapi.herokuapp.com/api/starships')">Starship</button>
+    <button onclick="writeToDocument('https://ci-swapi.herokuapp.com/api/vehicles')">Vehicles</button>
+    <button onclick="writeToDocument('https://ci-swapi.herokuapp.com/api/films')">Films</button>
+    <div id="data"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width">
+ <title>Jasmin Challange Two</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine.js" integrity="sha256-PePX8Jc4TIxzzVz0Qe4NsH3OUU8+Y49DBWvYgggNqkY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine-html.js" integrity="sha256-qazAASTTgUrq9SOYkPSB3oEuqbhn+2j4kxGkVZ0GKjY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/boot.js" integrity="sha256-HG8TKl0T65NyELmbUoo0H7/a1e++smYdXXtuuEsyKok=" crossorigin="anonymous"></script>
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine.css" integrity="sha256-YzqdEMEXu1sH1t2Y9tk3XhKhxy1xMWvcA1koZx43k+8=" crossorigin="anonymous" />
+ 
+    <script>
+      function fizzbuzzcheck(num){
+        if (num%3==0 && num%5==0){
+          return "FizzBuzz";
+            }
+        else if (num%3==0){
+          return "Fizz";
+        }
+          else if (num%5==0){
+          return "Buzz";
+        }
+          else {
+          return num;
+        }
+        
+        
+        }
+      // test senario is FizzBuzz Testing
+      describe (("FizzBuzz Testing"), function(){
+      // This is test case 1 
+        it (("Number Divisible by 3 and 5"), function(){
+          //arrange
+          let num=15;
+          // act
+          const result= fizzbuzzcheck(num);
+          //assert
+          expect(result).toBe("FizzBuzz");
+        });
+      // This is test case 12
+          it (("Number Divisible by 3"), function(){
+          //arrange
+          let num=3;
+          // act
+          const result= fizzbuzzcheck(num);
+          //assert
+          expect(result).toBe("Fizz");
+        });
+        // This is test case 3
+          it (("Number Divisible by 5"), function(){
+          //arrange
+          let num=5;
+          // act
+          const result= fizzbuzzcheck(num);
+          //assert
+          expect(result).toBe("Buzz");
+        });
+                // This is test case 3
+          it (("Number not Divisible by either 3 or 5"), function(){
+          //arrange
+          let num=44;
+          // act
+          const result= fizzbuzzcheck(num);
+          //assert
+          expect(result).toBe(num);
+        });
+        
+ 
+        });
+ 
+    </script>
+ 
+<!--    <script type="test/javascript" src="scripts/FizzBuss.js"></script>
+ 
+    <script type="test/javascript" src="specs/FizzBussSpecs.js"></script>

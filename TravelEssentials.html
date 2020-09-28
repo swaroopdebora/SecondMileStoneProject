@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Travel Essentials</title>
+     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500Open+Sans" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      <script src="https://kit.fontawesome.com/2a05f92155.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="css/style.css">
+      <style>
+         .row{
+         margin-left:10px;
+         }
+         h3{
+         color:#EA7186;
+         font-weight:600;
+         padding:20px 0px;
+				 text-align:left;
+				  }
+         #data{
+         padding-top:30px;
+         }
+         .holidaycontainer{
+         padding:20px;
+         width: 600px;
+         height: 200px;
+         overflow: scroll;
+         }
+         .weatherdata{
+         padding:30px;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <nav class="navbar navbar-expand-md navbar-light" id="navlist">
+            <div class="container">
+               <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                  <ul class="nav navbar-nav ml-auto">
+                     <li class="nav-item"><a href="index.html" class="nav-link" data-toggle="tooltip" title="Home Page!" ><i class="fas fa-house-user"></i></a></li>
+                     <li class="nav-item dropdown">
+                        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#" >Trending Tours<b class="caret"></b></a>
+                        <ul class="dropdown-menu honymoon_holiday_submenu mega_menu_header_titles mega_menu_header_titles_no_top">
+                           <li><a href="ooty.html" title="Goa Tour Packages">Hill Station -Ooty </a></li>
+                           <li><a href="delhi.html" title="Gujarat Tour Packages">Historic - Delhi </a></li>
+                           <li><a href="kanyakumari.html" title="Himachal Tour Packages">Beach - Kanyakumari </a></li>
+                           <li><a href="ladakh.html" title="Ladakh Tour Packages">Adventure -  Ladakh</a></li>
+                        </ul>
+                     </li>
+                     <li class="nav-item"><a href="adventure.html" class="nav-link">Adventure tours</a></li>
+                     <li class="nav-item"><a href="faqs.html" class="nav-link" data-toggle="tooltip" title="FAQs"><i class="fas fa-question-circle"></i></a></li>
+                     <li class="nav-item"><a href="contactus.html" class="nav-link">Contact Us</a></li>
+                     <li class="nav-item"><a href="sign.html" class="nav-link">Sign-In</a></li>
+                     <li class="nav-item"><a href="TravelEssentials.html" class="nav-link">TravelEssentials</a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <div class="row">
+         <div class="col-md-12 col-lg-4 curdiv">
+            <h3>Forex Calculator to INR</h3>
+            <form  onsubmit="writeToDocument($('#currency').val()) ; return false;">
+               <label for="amount">Enter your currency</label><br>
+               <select name="currency" id="currency">
+                  <option value="">base currency</option>
+                  <option value="CAD">CAD</option>
+                  <option value="HKD">HKD</option>
+                  <option value="ISK">ISK</option>
+                  <option value="PHP">PHP</option>
+                  <option value="DKK">DKK</option>
+                  <option value="HUF">HUF</option>
+                  <option value="CZK">CZK</option>
+                  <option value="RON">RON</option>
+                  <option value="SEK">SEK</option>
+                  <option value="IDR">IDR</option>
+                  <option value="INR">INR</option>
+                  <option value="BRL">BRL</option>
+                  <option value="RUB">RUB</option>
+                  <option value="HRK">HRK</option>
+                  <option value="JPY">JPY</option>
+                  <option value="THB">THB</option>
+                  <option value="CHF">CHF</option>
+                  <option value="EUR">EUR</option>
+                  <option value="MYR">MYR</option>
+                  <option value="BGN">BGN</option>
+                  <option value="TRY">TRY</option>
+                  <option value="CNY">CNY</option>
+                  <option value="NOK">NOK</option>
+                  <option value="NZD">NZD</option>
+                  <option value="ZAR">ZAR</option>
+                  <option value="USD">USD</option>
+                  <option value="MXN">MXN</option>
+                  <option value="SGD">SGD</option>
+                  <option value="AUD">AUD</option>
+                  <option value="ILS">ILS</option>
+                  <option value="KRW">KRW</option>
+                  <option value="PLN">PLN</option>
+               </select>
+               <input type="number" id="amount" name="amount"><br><br>
+               <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            <br>
+            <div id="curdata"></div>
+         </div>
+         <div class="col-md-12 col-lg-6 weatherguide">
+            <h3>Weather guide</h3>
+            <form  onsubmit="fetchWeatherData($('#place').val()); return false">
+               <label for="place">Enter the place you wish to visit</label>
+               <input type="text" id="place" name="place">
+               <input class="btn btn-success" type="submit" value="Submit">
+            </form>
+            <div id="weatherdata"></div>
+            <div class="weatherdata">
+               <div id="temp-data"></div>
+               <div id="feelslike-data"></div>
+               <div id="temp_max-data"></div>
+               <div id="temp_min-data"></div>
+               <div id="wind_speed-data"></div>
+            </div>
+         </div>
+      </div>
+			<br>
+			<br>
+      <div class="row">
+         <div class="col-lg-12 holdiv">
+            <h3>Holiday list of your country</h3>
+            <form  onsubmit="writeHolidayList($('#country').val(),$('#year').val()) ; return false">
+               <label for="country">Enter your Country Code 2 letter foramt like CA for Canada</label>
+               <input type="text" id="country" name="country"><br><br>
+               <label for="year">Enter the year for Holiday list</label><br>
+               <input type="number" id="year" name="year"><br><br>
+               <input class="btn btn-success" type="submit" value="Submit">
+            </form>
+            <br>
+            <div class="row holidaycontainer">
+               <div id="holidayName"></div>
+               <div id="holidayDate"></div>
+            </div>
+         </div>
+      </div>
+      <footer class="container-fluid">
+         <div id="footer-details" class="row">
+            <div class="col-sm-4">
+               <h4 class="uppercase general-sub">About</h4>
+               <p class="inline-block footertext">Travel Agent since more than a decade, helped thousands of travellers cherish a safe and wonderful holiday.</p>
+            </div>
+            <div class="col-sm-4">
+               <h4 class="uppercase general-sub">Download</h4>
+               <p class="inline-block footertext"> Need our Travel brocher? Download here.<a href="#" target="_blank" class="cv-pdf"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only">Download link.</span></a></p>
+            </div>
+            <div class="col-sm-4">
+               <h4 class="uppercase general-sub">Social</h4>
+               <ul class="list-inline social-links">
+                  <li class="list-inline-item">
+                     <a target="_blank" href="https://www.facebook.com/">
+                     <i class="fa fa-facebook" aria-hidden="true"></i>
+                     <span class="sr-only">FaceBook</span>
+                     </a>
+                  </li>
+                  <li class="list-inline-item">
+                     <a target="_blank" href="https://www.twitter.com/">
+                     <i class="fa fa-twitter" aria-hidden="true"></i>
+                     <span class="sr-only">Twitter</span>
+                     </a>
+                  </li>
+                  <li class="list-inline-item">
+                     <a target="_blank" href="https://www.linkedin.com/">
+                     <i class="fa fa-linkedin" aria-hidden="true"></i>
+                     <span class="sr-only">Linkedin</span>
+                     </a>
+                  </li>
+                  <li class="list-inline-item">
+                     <a target="_blank" href="https://www.youtube.com/">
+                     <i class="fa fa-youtube" aria-hidden="true"></i>
+                     <span class="sr-only">YouTube</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script>
+         function writeToDocument(curr) {
+					 // store the URI to access the API to an constant
+         const baseURL = "https://api.exchangeratesapi.io/latest?base=";
+         var xhr = new XMLHttpRequest();
+				 // use GET method to read data from the API though the URI, concatinate URI with the pramater curr passed by user 
+         	xhr.open("GET", baseURL + curr);
+         			xhr.send();
+         			xhr.onreadystatechange = function() {
+         					if (this.readyState == 4 && this.status == 200) {
+         							data = JSON.parse(this.responseText);
+         						}; 
+         				var conrate = data.rates.INR;
+         				var amountreq = $('#amount').val();
+         				var totalinr = conrate * amountreq;
+         				document.getElementById("curdata").innerHTML = `<h6><b>${amountreq}  ${curr} to INR  is ${totalinr}</b> </h6>` ; 
+         			}
+         		};
+      </script>
+      <script>
+       function writeHolidayList(country, year){
+         	var dataarray;
+					 	 // store the URI to access the API to an constant, and concatinate with prameters passed
+              const baseURL = "https://calendarific.com/api/v2/holidays?&api_key=83d13f37e76f899007ec577298954f12e46c87fe&country="+country+"&year="+year;
+                var xhr = new XMLHttpRequest();
+						 // use GET method to read data from the API though the URI
+							     xhr.open("GET", baseURL);
+                    xhr.send();
+										xhr.onreadystatechange = function(){ 
+										   if (this.readyState == 4 && this.status == 200) {
+											var data = JSON.parse(this.responseText);
+											// to alert the user when an invalid data is entered 
+												if (data.meta.error_type !== "call failed"){
+													 dataarray = data.response.holidays;
+         									 dataarray.forEach(function(item){
+         									 document.getElementById("holidayName").innerHTML += `<h6>${item.name}</h6>` ; 
+         								 	 document.getElementById("holidayDate").innerHTML += `<h6>${item.date.iso}</h6>` 
+         							});	
+											}
+											else {
+												alert("Invalid Country or Year Date, please check and try again");
+											}
+         	    		};
+         		};
+         		};
+      </script>
+      <script>
+          function	fetchWeatherData(place){
+           		var xhr = new XMLHttpRequest();
+							 	 // store the URI to access the API to an constant, and concatinate with prameters passed
+         			var baseURL = "https://api.openweathermap.org/data/2.5/weather?q="+place+"&APPID=08186312a5a64c7bc1c004cd32050ebf&units=metric"
+         			var data; // Next use GET method to read data from the API though the URI
+         			xhr.open("GET", baseURL);
+         			xhr.send();
+							xhr.onreadystatechange = function() {
+										if (this.readyState !== 404 && this.status == 200) {
+									  		data = JSON.parse(this.responseText);  // parsing the response tect to an object
+												document.getElementById("temp-data").innerHTML =`<h6><b>Temp in celsius today is</b> ${data.main.temp}</h6>` ;
+												document.getElementById("feelslike-data").innerHTML =`<h6><b>Feels like </b> ${data.main.feels_like}</h6>` ;
+												document.getElementById("temp_max-data").innerHTML =`<h6><b>Max temp today is</b> ${data.main.temp_max}</h6>` ;
+												document.getElementById("temp_min-data").innerHTML =`<h6><b>Min temp  today is</b> ${data.main.temp_min}</h6>` ;
+												document.getElementById("wind_speed-data").innerHTML =`<h6><b>Wind Speed today is</b> ${data.wind.speed}</h6>` ;	
+										} 	// end of if  success block to parse responce to data object
+										else {
+													alert("Invalid city name");	
+												}
+										}  // end of checking if code is undefined
+   							 // end of onreadystatechange function 
+         	}; // end of main function
+      </script>
+   </body>
+</html>
+		
